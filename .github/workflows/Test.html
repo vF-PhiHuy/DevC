@@ -1,0 +1,36 @@
+<p id="result"> Hello reacct native, pls try to enter your number </p>
+<input id="number" />
+<button onclick="myFunction()">Guess</button>
+<h2 id="pastResult">PAST RESULT</h2>
+
+<script>
+    var min = 1;
+    var max = 100;
+    var yourRandomNumber = Math.ceil(Math.random() * (+max - +min)) + +min;
+    var pastResult = ""
+    var count = 10;
+
+    function myFunction() {
+        if (count == 1) {
+            alert('You lose. Your correct number is ' + yourRandomNumber + ". Please retry");
+            location.reload();
+        }
+        //var finalNumber = 10;
+        var yourInput = document.getElementById('number').value;
+        if (yourInput == yourRandomNumber) {
+            document.getElementById('result').innerHTML = 'Congratulations';
+            document.getElementById('result').style.backgroundColor = "green";
+
+        } else if (yourInput < yourRandomNumber) {
+            count--
+            document.getElementById('result').innerHTML = 'Your number is too low. You have ' + count + ' left';
+            document.getElementById('result').style.backgroundColor = "red";
+        } else if (yourInput > yourRandomNumber) {
+            document.getElementById('result').innerHTML = 'Your number is too high.You have ' + count + ' left';
+            document.getElementById('result').style.backgroundColor = "red";
+        }
+        pastResult = pastResult + yourInput + "<br/>"
+        document.getElementById('pastResult').innerHTML = pastResult;
+
+    }
+</script>
